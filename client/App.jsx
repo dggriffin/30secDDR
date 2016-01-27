@@ -1,3 +1,5 @@
+let timer;
+
 // App component - represents the whole app
 App = React.createClass({
 
@@ -18,33 +20,32 @@ App = React.createClass({
     }
   },
  
-  renderTasks() {
-    return this.data.tasks.map((task) => {
-      return <Task key={task._id} task={task} />;
-    });
-  },
-
-  renderSongs() {
+  renderTracks() {
     return this.state.searchResults.map((track) => {
-      return <p>{track.artists[0].name} - {track.name}</p>
+      return <Track key={track.id} track={track} />;
     });
   },
 
   renderLogin() {
     if (Meteor.user()) {
       let spotifyAccount = Meteor.user().services.spotify;
-      return spotifyAccount ? <p> Logged in as {spotifyAccount.display_name}</p> : 
+
+      return spotifyAccount ? 
+      <a className="dropdown-button" href="#!" data-activates="dropdown1">
+        Logged in as {spotifyAccount.display_name}
+        <i className="fa fa-caret-down  right"/> 
+      </a> : 
       <button className="btn azm-social azm-btn azm-border-bottom azm-spotify" 
             onClick={this.attemptLogin}>
               <i className="fa fa-spotify"></i> 
               LOG IN TO SPOTIFY
-            </button>
+      </button>
       }
   },
 
   attemptLogin() {
-    var scopes = ['playlist-modify-private', 'user-library-read','user-follow-read', 'playlist-read-private'];
-    var options = {
+    let scopes = ['playlist-modify-private', 'user-library-read','user-follow-read', 'playlist-read-private'];
+    let options = {
       showDialog: true, // Whether or not to force the user to approve the app again if they’ve already done so.
       requestPermissions: scopes // Spotify access scopes.
     };
@@ -57,7 +58,7 @@ App = React.createClass({
     event.preventDefault();
  
     // Find the text field via the React ref
-    var text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
+    let text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
  
     Tasks.insert({
       text: text,
@@ -68,44 +69,51 @@ App = React.createClass({
     ReactDOM.findDOMNode(this.refs.textInput).value = "";
   },
 
-  searchTracks(event){
+  handleChange(event) {
     let value = event.target.value;
-    if (!value) {
-      let myNode = ReactDOM.findDOMNode(this.refs.trackResults);
-      while (myNode.firstChild) {
-          myNode.removeChild(myNode.firstChild);
-      }
-      return;
-    }
-    Meteor.call('typeaheadTracks', event.target.value, (error, resp) => {
-      if (error) {
+    if (value) {
+      Meteor.call('typeaheadTracks', value, (error, resp) => {
+        if (error) {
 
-      } else {
-        this.setState({searchResults: resp});
-      }
-    });
+        } else {
+          this.setState({searchResults: resp});
+        }
+      });
+    }
+    else {
+      this.setState({searchResults: []});
+    }
   },
  
   render() {
     return (
-      <div className="container">
         <header>
-          <h1>30secDDR</h1>
-
-          {this.renderLogin()}
-
-          <input
-            type="text"
-            ref="textInput"
-            onChange={this.searchTracks}
-            placeholder="Type to search tracks" />
-
+          <div className="navbar-fixed">
+            <nav>
+              <div className="nav-wrapper teal">
+                <a href="#!" className="brand-logo center thin">30secDDR</a>
+                <ul className="right">
+                  <li>{this.renderLogin()}</li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <ul id="dropdown1" className="dropdown-content">
+            <li className="divider"></li>
+            <li><a href="#!">Log out</a></li>
+          </ul>
+          <div className="container">
+              <input
+                type="text"
+                ref="textInput"
+                onChange={this.handleChange}
+                placeholder="Type to search tracks" />
+            <ul className="collection"
+                ref="trackResults">
+              {this.renderTracks()}
+            </ul>
+          </div>
         </header>
- 
-        <ul ref="trackResults">
-          {this.renderSongs()}
-        </ul>
-      </div>
     );
   }
 });
