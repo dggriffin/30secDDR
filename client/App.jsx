@@ -7,8 +7,9 @@ App = React.createClass({
     getInitialState: function() {
     // naming it initialX clearly indicates that the only purpose
     // of the passed down prop is to initialize something internally
-    this.followCount();
-    return {followerCount: 0};
+    return {
+      searchResults: []
+    };
   },
 
   getMeteorData() {
@@ -16,22 +17,29 @@ App = React.createClass({
       tasks: Tasks.find({}, {sort: {createdAt: -1}}).fetch()
     }
   },
-
-  followCount() {
-    var me = this;
-    Meteor.call('getFollowerCount', function(error, resp){
-      if(error){
-
-      } else {
-        me.setState({followerCount: resp });
-      }
-    });
-  },
  
   renderTasks() {
     return this.data.tasks.map((task) => {
       return <Task key={task._id} task={task} />;
     });
+  },
+
+  renderSongs() {
+    return this.state.searchResults.map((track) => {
+      return <p>{track.artists[0].name} - {track.name}</p>
+    });
+  },
+
+  renderLogin() {
+    if (Meteor.user()) {
+      let spotifyAccount = Meteor.user().services.spotify;
+      return spotifyAccount ? <p> Logged in as {spotifyAccount.display_name}</p> : 
+      <button className="btn azm-social azm-btn azm-border-bottom azm-spotify" 
+            onClick={this.attemptLogin}>
+              <i className="fa fa-spotify"></i> 
+              LOG IN TO SPOTIFY
+            </button>
+      }
   },
 
   attemptLogin() {
@@ -59,28 +67,43 @@ App = React.createClass({
     // Clear form
     ReactDOM.findDOMNode(this.refs.textInput).value = "";
   },
+
+  searchTracks(event){
+    let value = event.target.value;
+    if (!value) {
+      let myNode = ReactDOM.findDOMNode(this.refs.trackResults);
+      while (myNode.firstChild) {
+          myNode.removeChild(myNode.firstChild);
+      }
+      return;
+    }
+    Meteor.call('typeaheadTracks', event.target.value, (error, resp) => {
+      if (error) {
+
+      } else {
+        this.setState({searchResults: resp});
+      }
+    });
+  },
  
   render() {
     return (
       <div className="container">
         <header>
-          <h1>Todo List</h1>
-          <p> asdsd {this.state.followerCount}</p>
-          <button onClick={this.attemptLogin}> 
-            Click me 
-          </button>
+          <h1>30secDDR</h1>
 
+          {this.renderLogin()}
 
-          <form className="new-task" onSubmit={this.handleSubmit} >
-            <input
-              type="text"
-              ref="textInput"
-              placeholder="Type to add new tasks" />
-          </form>
+          <input
+            type="text"
+            ref="textInput"
+            onChange={this.searchTracks}
+            placeholder="Type to search tracks" />
+
         </header>
  
-        <ul>
-          {this.renderTasks()}
+        <ul ref="trackResults">
+          {this.renderSongs()}
         </ul>
       </div>
     );
