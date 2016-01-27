@@ -13,7 +13,7 @@ Track = React.createClass({
       <a className="collection-item avatar" onClick={this.handleClick}>
         <i className="fa fa-play circle"></i>
         <span className="title"> {this.props.track.name} </span>
-        <p>
+        <p className ="grey-text">
           {this.props.track.artists[0].name}
         </p>
       </a>

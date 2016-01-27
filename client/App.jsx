@@ -16,7 +16,9 @@ App = React.createClass({
 
   getMeteorData() {
     return {
-      tasks: Tasks.find({}, {sort: {createdAt: -1}}).fetch()
+      tasks: Tasks.find({}, {sort: {createdAt: -1}}).fetch(),
+      user: Meteor.users.findOne()
+
     }
   },
  
@@ -27,7 +29,7 @@ App = React.createClass({
   },
 
   renderLogin() {
-    if (Meteor.user()) {
+    if (this.data.user) {
       let spotifyAccount = Meteor.user().services.spotify;
 
       return spotifyAccount ? 
@@ -40,7 +42,7 @@ App = React.createClass({
               <i className="fa fa-spotify"></i> 
               LOG IN TO SPOTIFY
       </button>
-      }
+    }
   },
 
   attemptLogin() {
@@ -85,6 +87,9 @@ App = React.createClass({
     }
   },
  
+ handleClick(event, track) {
+  console.log('hi');
+ },
   render() {
     return (
         <header>
@@ -108,6 +113,7 @@ App = React.createClass({
                 ref="textInput"
                 onChange={this.handleChange}
                 placeholder="Type to search tracks" />
+
             <ul className="collection"
                 ref="trackResults">
               {this.renderTracks()}
