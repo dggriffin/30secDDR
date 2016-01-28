@@ -6,7 +6,7 @@ App = React.createClass({
    // This mixin makes the getMeteorData method work
   mixins: [ReactMeteorData],
 
-    getInitialState: function() {
+  getInitialState: function() {
     // naming it initialX clearly indicates that the only purpose
     // of the passed down prop is to initialize something internally
     return {
