@@ -16,9 +16,7 @@ App = React.createClass({
 
   getMeteorData() {
     return {
-      tasks: Tasks.find({}, {sort: {createdAt: -1}}).fetch(),
       user: Meteor.users.findOne()
-
     }
   },
  
@@ -56,21 +54,6 @@ App = React.createClass({
     });
   },
 
-  handleSubmit(event) {
-    event.preventDefault();
- 
-    // Find the text field via the React ref
-    let text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
- 
-    Tasks.insert({
-      text: text,
-      createdAt: new Date() // current time
-    });
- 
-    // Clear form
-    ReactDOM.findDOMNode(this.refs.textInput).value = "";
-  },
-
   handleChange(event) {
     let value = event.target.value;
     if (value) {
@@ -87,9 +70,6 @@ App = React.createClass({
     }
   },
  
- handleClick(event, track) {
-  console.log('hi');
- },
   render() {
     return (
         <header>
@@ -119,6 +99,7 @@ App = React.createClass({
               {this.renderTracks()}
             </ul>
           </div>
+          <Visualizer/>
         </header>
     );
   }

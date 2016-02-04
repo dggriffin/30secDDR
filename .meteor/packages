@@ -25,3 +25,7 @@ kadira:flow-router
 service-configuration
 materialize:materialize
 meteorflux:meteorflux
+meteorhacks:npm
+d3
+
+npm-container

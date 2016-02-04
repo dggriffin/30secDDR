@@ -1,0 +1,269 @@
+{
+  "dependencies": {
+    "react": {
+      "version": "0.14.7",
+      "dependencies": {
+        "envify": {
+          "version": "3.4.0",
+          "dependencies": {
+            "through": {
+              "version": "2.3.8"
+            },
+            "jstransform": {
+              "version": "10.1.0",
+              "dependencies": {
+                "base62": {
+                  "version": "0.1.1"
+                },
+                "esprima-fb": {
+                  "version": "13001.1001.0-dev-harmony-fb"
+                },
+                "source-map": {
+                  "version": "0.1.31",
+                  "dependencies": {
+                    "amdefine": {
+                      "version": "1.0.0"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "fbjs": {
+          "version": "0.6.1",
+          "dependencies": {
+            "core-js": {
+              "version": "1.2.6"
+            },
+            "loose-envify": {
+              "version": "1.1.0",
+              "dependencies": {
+                "js-tokens": {
+                  "version": "1.0.2"
+                }
+              }
+            },
+            "promise": {
+              "version": "7.1.1",
+              "dependencies": {
+                "asap": {
+                  "version": "2.0.3"
+                }
+              }
+            },
+            "ua-parser-js": {
+              "version": "0.7.10"
+            },
+            "whatwg-fetch": {
+              "version": "0.9.0"
+            }
+          }
+        }
+      }
+    },
+    "react-faux-dom": {
+      "version": "2.1.1",
+      "dependencies": {
+        "lodash.assign": {
+          "version": "3.2.0",
+          "dependencies": {
+            "lodash._baseassign": {
+              "version": "3.2.0",
+              "dependencies": {
+                "lodash._basecopy": {
+                  "version": "3.0.1"
+                }
+              }
+            },
+            "lodash._createassigner": {
+              "version": "3.1.1",
+              "dependencies": {
+                "lodash._bindcallback": {
+                  "version": "3.0.1"
+                },
+                "lodash._isiterateecall": {
+                  "version": "3.0.9"
+                },
+                "lodash.restparam": {
+                  "version": "3.6.1"
+                }
+              }
+            },
+            "lodash.keys": {
+              "version": "3.1.2",
+              "dependencies": {
+                "lodash._getnative": {
+                  "version": "3.9.1"
+                },
+                "lodash.isarguments": {
+                  "version": "3.0.6"
+                },
+                "lodash.isarray": {
+                  "version": "3.0.4"
+                }
+              }
+            }
+          }
+        },
+        "lodash.camelcase": {
+          "version": "3.0.1",
+          "dependencies": {
+            "lodash._createcompounder": {
+              "version": "3.0.0",
+              "dependencies": {
+                "lodash.deburr": {
+                  "version": "3.1.2"
+                },
+                "lodash.words": {
+                  "version": "3.1.2"
+                }
+              }
+            }
+          }
+        },
+        "lodash.clone": {
+          "version": "3.0.3",
+          "dependencies": {
+            "lodash._baseclone": {
+              "version": "3.3.0",
+              "dependencies": {
+                "lodash._arraycopy": {
+                  "version": "3.0.0"
+                },
+                "lodash._arrayeach": {
+                  "version": "3.0.0"
+                },
+                "lodash._baseassign": {
+                  "version": "3.2.0",
+                  "dependencies": {
+                    "lodash._basecopy": {
+                      "version": "3.0.1"
+                    }
+                  }
+                },
+                "lodash._basefor": {
+                  "version": "3.0.3"
+                },
+                "lodash.isarray": {
+                  "version": "3.0.4"
+                },
+                "lodash.keys": {
+                  "version": "3.1.2",
+                  "dependencies": {
+                    "lodash._getnative": {
+                      "version": "3.9.1"
+                    },
+                    "lodash.isarguments": {
+                      "version": "3.0.6"
+                    }
+                  }
+                }
+              }
+            },
+            "lodash._bindcallback": {
+              "version": "3.0.1"
+            },
+            "lodash._isiterateecall": {
+              "version": "3.0.9"
+            }
+          }
+        },
+        "lodash.mapvalues": {
+          "version": "3.0.1",
+          "dependencies": {
+            "lodash._basecallback": {
+              "version": "3.3.1",
+              "dependencies": {
+                "lodash._baseisequal": {
+                  "version": "3.0.7",
+                  "dependencies": {
+                    "lodash.istypedarray": {
+                      "version": "3.0.4"
+                    }
+                  }
+                },
+                "lodash._bindcallback": {
+                  "version": "3.0.1"
+                },
+                "lodash.isarray": {
+                  "version": "3.0.4"
+                },
+                "lodash.pairs": {
+                  "version": "3.0.1"
+                }
+              }
+            },
+            "lodash._basefor": {
+              "version": "3.0.3"
+            },
+            "lodash.keys": {
+              "version": "3.1.2",
+              "dependencies": {
+                "lodash._getnative": {
+                  "version": "3.9.1"
+                },
+                "lodash.isarguments": {
+                  "version": "3.0.6"
+                },
+                "lodash.isarray": {
+                  "version": "3.0.4"
+                }
+              }
+            }
+          }
+        },
+        "lodash.some": {
+          "version": "3.2.3",
+          "dependencies": {
+            "lodash._basecallback": {
+              "version": "3.3.1",
+              "dependencies": {
+                "lodash._baseisequal": {
+                  "version": "3.0.7",
+                  "dependencies": {
+                    "lodash.istypedarray": {
+                      "version": "3.0.4"
+                    }
+                  }
+                },
+                "lodash._bindcallback": {
+                  "version": "3.0.1"
+                },
+                "lodash.pairs": {
+                  "version": "3.0.1"
+                }
+              }
+            },
+            "lodash._baseeach": {
+              "version": "3.0.4"
+            },
+            "lodash._isiterateecall": {
+              "version": "3.0.9"
+            },
+            "lodash.isarray": {
+              "version": "3.0.4"
+            },
+            "lodash.keys": {
+              "version": "3.1.2",
+              "dependencies": {
+                "lodash._getnative": {
+                  "version": "3.9.1"
+                },
+                "lodash.isarguments": {
+                  "version": "3.0.6"
+                }
+              }
+            }
+          }
+        },
+        "query-selector": {
+          "version": "1.0.9"
+        },
+        "style-attr": {
+          "version": "1.0.1"
+        }
+      }
+    }
+  }
+}
